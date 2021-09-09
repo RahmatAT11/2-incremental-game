@@ -68,32 +68,34 @@ public class GameManager : MonoBehaviour
 
     private void AddAllResources()
     {
+        bool showResources = true;
         foreach (ResourceConfig config in ResourceConfigs)
         {
             GameObject obj = Instantiate(ResourcePrefab.gameObject, ResourceParent, false);
             ResourceController resource = obj.GetComponent<ResourceController>();
             
             resource.SetConfig(config);
+            obj.gameObject.SetActive(showResources);
+
+            if (showResources && !resource.IsUnlocked)
+            {
+                showResources = false;
+            }
+            
             _activeResources.Add(resource);
         }
     }
-    
-    private void CollectPerSecond()
-    {
-        double output = 0;
 
+    public void ShowNextResource()
+    {
         foreach (ResourceController resource in _activeResources)
         {
-            output += resource.GetOutput();
+            if (!resource.gameObject.activeSelf)
+            {
+                resource.gameObject.SetActive(true);
+                break;
+            }
         }
-
-        output *= AutoCollectPercentage;
-        
-        // Fungsi ToString("F1") ialah membulatkan angka menjadi desimal yang memiliki 1 angka
-        // di belakang koma
-        AutoCollectInfo.text = $"Auto Collect: {output.ToString("F1")} / second";
-
-        AddGold(output);
     }
 
     public void AddGold(double value)
@@ -107,7 +109,10 @@ public class GameManager : MonoBehaviour
         double output = 0;
         foreach (ResourceController resource in _activeResources)
         {
-            output += resource.GetOutput();
+            if (resource.IsUnlocked)
+            {
+                output += resource.GetOutput();
+            }
         }
 
         TapText tapText = GetOrCreateTapText();
@@ -137,10 +142,39 @@ public class GameManager : MonoBehaviour
     {
         foreach (ResourceController resource in _activeResources)
         {
-            bool isBuyable = TotalGold >= resource.GetUpgradeCost();
+            bool isBuyable = false;
+            if (resource.IsUnlocked)
+            {
+                isBuyable = TotalGold >= resource.GetUpgradeCost();
+            }
+            else
+            {
+                isBuyable = TotalGold >= resource.GetUnlockCost();
+            }
 
             resource.ResourceImage.sprite = ResourcesSprites[isBuyable ? 1 : 0];
         }
+    }
+    
+    private void CollectPerSecond()
+    {
+        double output = 0;
+
+        foreach (ResourceController resource in _activeResources)
+        {
+            if (resource.IsUnlocked)
+            {
+                output += resource.GetOutput();
+            }
+        }
+
+        output *= AutoCollectPercentage;
+        
+        // Fungsi ToString("F1") ialah membulatkan angka menjadi desimal yang memiliki 1 angka
+        // di belakang koma
+        AutoCollectInfo.text = $"Auto Collect: {output.ToString("F1")} / second";
+
+        AddGold(output);
     }
 }
 
