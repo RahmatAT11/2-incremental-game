@@ -92,6 +92,7 @@ GameObject:
   - component: {fileID: 6801965587393521499}
   - component: {fileID: 878467931295489463}
   - component: {fileID: 3070814857568517280}
+  - component: {fileID: 3189172772770092244}
   m_Layer: 5
   m_Name: Resource UI
   m_TagString: Untagged
@@ -158,6 +159,21 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
+--- !u!114 &3189172772770092244
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1646389404562026018}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 508cf3c34c59ca7f6be674fe4cdb7f4c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ResourceDescription: {fileID: 909853332334546360}
+  ResourceUpgradeCost: {fileID: 2552142195597573842}
+  ResourceUnlockCost: {fileID: 2474560963936992146}
 --- !u!1 &3727614289336367012
 GameObject:
   m_ObjectHideFlags: 0
