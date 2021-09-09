@@ -146,7 +146,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.00003811729, y: 0.000041578965}
+  m_AnchoredPosition: {x: -0.00003811729, y: 0.0000111145655}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &15314251
@@ -613,6 +613,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c373515afe36004bfba9aafb292ac75b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  AutoCollectPercentage: 0.1
+  ResourceConfigs:
+  - Name: Click
+    UnlockCost: 0
+    UpgradeCost: 1
+    Output: 2
+  ResourceParent: {fileID: 15314250}
+  ResourcePrefab: {fileID: 3189172772770092244, guid: aac62aad09f2c3014ad9d35e882f625f,
+    type: 3}
+  GoldInfo: {fileID: 1875202195}
+  AutoCollectInfo: {fileID: 135708891}
 --- !u!4 &739975993
 Transform:
   m_ObjectHideFlags: 0
@@ -706,7 +717,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 496646830}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0.99999994
+  m_Size: 0.9999999
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -828,7 +839,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 598471563}
   m_HandleRect: {fileID: 598471562}
   m_Direction: 0
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
